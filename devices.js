@@ -1021,6 +1021,14 @@ const devices = [
         ota: ota.tradfri,
     },
     {
+        zigbeeModel: ['TRADFRI bulb E14 WS 470lm'],
+        model: 'LED1903C5',
+        vendor: 'IKEA',
+        description: 'TRADFRI bulb E14 WS 470 lumen, dimmable, white spectrum, opal white',
+        extend: generic.light_onoff_brightness_colortemp,
+        ota: ota.tradfri,
+    },
+    {
         zigbeeModel: ['TRADFRI bulb GU10 WW 400lm'],
         model: 'LED1837R5',
         vendor: 'IKEA',
@@ -1909,7 +1917,7 @@ const devices = [
         extend: hue.light_onoff_brightness,
     },
     {
-        zigbeeModel: ['1743630P7'],
+        zigbeeModel: ['1743630P7', '1743630V7'],
         model: '17436/30/P7',
         vendor: 'Philips',
         description: 'Hue Welcome white flood light',
@@ -2709,6 +2717,13 @@ const devices = [
         vendor: 'Innr',
         description: 'GU10 spot 350 lm, dimmable, white spectrum',
         extend: generic.light_onoff_brightness_colortemp,
+    },
+    {
+        zigbeeModel: ['RS 230 C'],
+        model: 'RS 230 C',
+        vendor: 'Innr',
+        description: 'GU10 spot 350 lm, dimmable, RGBW',
+        extend: generic.light_onoff_brightness_colortemp_colorxy,
     },
     {
         zigbeeModel: ['RB 145'],
@@ -4577,7 +4592,7 @@ const devices = [
 
     // Blaupunkt
     {
-        zigbeeModel: ['SCM-R_00.00.03.15TC', 'SCM_00.00.03.14TC'],
+        zigbeeModel: ['SCM-2_00.00.03.15', 'SCM-R_00.00.03.15TC', 'SCM_00.00.03.14TC'],
         model: 'SCM-S1',
         vendor: 'Blaupunkt',
         description: 'Roller shutter',
