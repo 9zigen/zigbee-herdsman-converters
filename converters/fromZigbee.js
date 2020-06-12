@@ -257,6 +257,16 @@ const converters = {
             }
         },
     },
+    ph_measurement: {
+        cluster: 'pHMeasurement',
+        type: ['attributeReport', 'readResponse'],
+        convert: (model, msg, publish, options, meta) => {
+            if (msg.data.hasOwnProperty('measuredValue')) {
+                const ph_measurement = parseFloat(msg.data['measuredValue']) / 100.0;
+                return {ph_measurement: ph_measurement};
+            }
+        },
+    },
     electrical_measurement: {
         /**
          * When using this converter also add the following to the configure method of the device:

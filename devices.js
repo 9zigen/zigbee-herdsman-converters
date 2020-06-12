@@ -2152,6 +2152,33 @@ const devices = [
         toZigbee: [tz.on_off],
     },
 
+    // Alab
+    {
+        zigbeeModel: ['Alab-PhSensor-1.0'],
+        model: 'Alab-PhSensor-1.0',
+        vendor: 'Custom devices (DiY)',
+        description: '[DiY Wireless PH Sensor](https://github.com/9zigen/zigbee-ph-sensor)',
+        supports: 'temperature, humidity',
+        fromZigbee: [fz.temperatuconfigureReportingre, fz.humidity, fz.battery_200, fz.ph_measurement],
+        toZigbee: [],
+        configure: async (device, coordinatorEndpoint) => {
+            const endpoint = device.getEndpoint(10);
+            await bind(endpoint, coordinatorEndpoint, ['msTemperatureMeasurement', 'msRelativeHumidity', 'pHMeasurement', 'genPowerCfg']);
+            await configureReporting.batteryPercentageRemaining(endpoint);
+            await configureReporting.batteryVoltage(endpoint);
+            await configureReporting.temperature(endpoint);
+            await configureReporting.humidity(endpoint, 60);
+
+            /* pH Reporting */
+            const payload = [{
+                attribute: 'pHMeasurement',
+                minimumReportInterval: 60,
+                maximumReportInterval: repInterval.HOUR,
+            }];
+            await endpoint.configureReporting('measuredValue', payload);
+        },
+    },
+
     // eCozy
     {
         zigbeeModel: ['Thermostat'],
